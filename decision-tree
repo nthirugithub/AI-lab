@@ -1,0 +1,13 @@
+def decision_tree(weather, temperature):
+    if weather.lower() == "sunny":
+        if temperature.lower() == "cool":
+            return "Play"
+        else:
+            return "Don't Play"
+    elif weather.lower() == "rainy":
+        return "Play"
+    else:
+        return "Unknown"
+weather = input("Enter weather (sunny/rainy): ")
+temperature = input("Enter temperature (cool/hot): ")
+print("Decision:", decision_tree(weather, temperature))
