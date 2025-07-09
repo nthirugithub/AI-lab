@@ -1,0 +1,17 @@
+def minimax(depth, index, isMax, scores, h):
+    if depth == h:
+        return scores[index]
+    if isMax:
+        return max(
+            minimax(depth + 1, index * 2, False, scores, h),
+            minimax(depth + 1, index * 2 + 1, False, scores, h)
+        )
+    else:
+        return min(
+            minimax(depth + 1, index * 2, True, scores, h),
+            minimax(depth + 1, index * 2 + 1, True, scores, h)
+        )
+scores = [3, 5, 2, 9, 12, 5, 23, 23]  
+height = 3 
+best = minimax(0, 0, True, scores, height)
+print("Optimal value:", best)
