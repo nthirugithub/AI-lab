@@ -1,0 +1,14 @@
+def ab(depth, i, maxp, vals, a, b):
+    if depth == 3: return vals[i]
+    if maxp:
+        for j in [0, 1]:
+            a = max(a, ab(depth+1, i*2+j, False, vals, a, b))
+            if b <= a: break
+        return a
+    else:
+        for j in [0, 1]:
+            b = min(b, ab(depth+1, i*2+j, True, vals, a, b))
+            if b <= a: break
+        return b
+v = [3, 5, 6, 9, 1, 2, 0, -1]
+print("Optimal value:", ab(0, 0, True, v, float('-inf'), float('inf')))
