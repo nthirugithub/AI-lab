@@ -1,0 +1,10 @@
+def vacuum(loc, room):
+    if room[loc] == 1:
+        print(f"Cleaning {loc}")
+        room[loc] = 0
+    if loc == 0:
+        vacuum(1, room)
+    elif loc == 1:
+        vacuum(0, room)
+room = [1, 1]  
+vacuum(0, room)
