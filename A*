@@ -1,0 +1,23 @@
+def astar(start, goal):
+    import heapq
+    def h(a, b): return abs(a[0]-b[0]) + abs(a[1]-b[1])
+    open = [(0, start)]
+    came = {}
+    g = {start: 0}
+    while open:
+        _, curr = heapq.heappop(open)
+        if curr == goal:
+            path = []
+            while curr in came:
+                path.append(curr)
+                curr = came[curr]
+            return [start] + path[::-1]
+        for d in [(0,1),(1,0),(0,-1),(-1,0)]:
+            nei = (curr[0]+d[0], curr[1]+d[1])
+            if 0<=nei[0]<5 and 0<=nei[1]<5:
+                temp_g = g[curr] + 1
+                if nei not in g or temp_g < g[nei]:
+                    g[nei] = temp_g
+                    heapq.heappush(open, (temp_g + h(nei, goal), nei))
+                    came[nei] = curr
+print(astar((0, 0), (4, 4)))
