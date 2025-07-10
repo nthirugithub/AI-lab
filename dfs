@@ -1,0 +1,19 @@
+def dfs(graph, start, goal, visited=None, path=None):
+    if visited is None: visited = set()
+    if path is None: path = [start]
+    visited.add(start)
+    if start == goal:
+        print("Path:", path)
+        return True
+    for nei in graph[start]:
+        if nei not in visited:
+            if dfs(graph, nei, goal, visited, path + [nei]): return True
+    return False
+graph = {
+    0: [1, 2],
+    1: [0, 2, 3],
+    2: [0, 1, 3],
+    3: [1, 2, 4],
+    4: [3]
+}
+dfs(graph, 0, 4)
