@@ -1,0 +1,15 @@
+def is_safe(board, row, col):
+    for i in range(row):
+        if board[i] == col or abs(board[i] - col) == abs(i - row):
+            return False
+    return True
+def solve_8_queen(row=0, board=[]):
+    if row == 8:
+        print("Solution (Queen in column per row):", board)
+        return True
+    for col in range(8):
+        if is_safe(board, row, col):
+            if solve_8_queen(row + 1, board + [col]):
+                return True
+    return False
+solve_8_queen()
